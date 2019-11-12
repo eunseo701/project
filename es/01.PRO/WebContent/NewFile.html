@@ -1,0 +1,62 @@
+<html>
+<body>
+ <script type="text/javascript"> 
+// 첫번째 인자 form 개체 
+// 두번째부터 셀렉트박스의 이름 
+  function select_duplicated_check(form) { 
+if (!form) { window.alert('form 이 없습니다.'); return false; } 
+var cnt = arguments.length,i, el_1 = null, el_2 = null; 
+// for 
+for (i = 2; i<cnt; i++) { // 2부터 시작합니다. 이전 select box 와 비교하기 위해.. 
+el_1 = form.elements[arguments[i-1]]; 
+el_2 = form.elements[arguments[i]]; 
+if (typeof(el_1) != 'object' || typeof(el_2) != 'object') { // 개체 판별 
+window.alert('해당 속성이 존재하지 않습니다.'); 
+return false; 
+} 
+if (el_1.value == el_2.value) { 
+window.alert(el_1[el_1.selectedIndex].text + ' 와(과) ' + el_2[el_2.selectedIndex].text + ' 이(가) 동일합니다.'); 
+return false; 
+} 
+} 
+// for end 
+  } 
+  </script> 
+
+
+  <form name="test"> 
+<select name="test1"> 
+<option value='January'>January</option> 
+    <option value='February'>February</option> 
+    <option value='March'>March</option> 
+    <option value='April'>April</option> 
+    <option value='May'>May</option> 
+    <option value='June'>June</option> 
+    <option value='July'>July</option> 
+    <option value='August'>August</option> 
+    <option value='September'>September</option> 
+    <option value='October'>October</option> 
+    <option value='November'>November</option> 
+    <option value='December'>December</option> 
+    <option value='delete'>*Delete</option> 
+</select> 
+<select name="test2"> 
+<option value='January'>January</option> 
+    <option value='February'>February</option> 
+    <option value='March'>March</option> 
+    <option value='April'>April</option> 
+    <option value='May'>May</option> 
+    <option value='June'>June</option> 
+    <option value='July'>July</option> 
+    <option value='August'>August</option> 
+    <option value='September'>September</option> 
+    <option value='October'>October</option> 
+    <option value='November'>November</option> 
+    <option value='December'>December</option> 
+    <option value='delete'>*Delete</option> 
+</select> 
+  </form> 
+  <input type="button" value="값 체크" onclick="select_duplicated_check(document.forms['test'], 'test1', 'test2');"> 
+</body>
+</html>
+
